@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/home/sander/Projects'
+let g:netrw_dirhist_2='/home/sander/Projects/WIHF'
+let g:netrw_dirhist_3='/home/sander/Projects'
+let g:netrw_dirhist_4='/home/sander/Projects/mixer-plan'
+let g:netrw_dirhist_5='/home/sander/Projects'
+let g:netrw_dirhist_6='/home/sander/Projects/WIHF'
+let g:netrw_dirhist_7='/home/sander/Projects/WIHF/mediehuset-dashboard'
+let g:netrw_dirhist_8='/home/sander/Projects/WIHF/mediehuset-dashboard/src'
+let g:netrw_dirhist_9='/home/sander/Projects/WIHF/mediehuset-dashboard/src/scripts'
