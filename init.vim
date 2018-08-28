@@ -4,19 +4,21 @@ Plug 'kaicataldo/material.vim'
 
 Plug 'pangloss/vim-javascript'
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-Plug 'steelsojka/deoplete-flow'
-
 Plug 'jiangmiao/auto-pairs'
+
+Plug 'Valloric/youCompleteMe', { 'do': './install.py --tern-completer' }
 
 call plug#end()
 
 " General stuff.
 filetype plugin indent on
+set number
 
 " File-type-specific indentation and stuff.
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+autocmd FileType scss setlocal shiftwidth=2 tabstop=2
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType php setlocal shiftwidth=2 tabstop=2
 
 " Theme stuff.
 set background=dark
@@ -39,16 +41,11 @@ colorscheme material
 " Javascript syntax highlighting.
 let g:javascript_plugin_jsdoc = 1
 
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
+" Start autocompletion after4 characters.
+let g:ycm_min_num_of_chars_for_completion = 4
+let g:ycm_min_num_identifier_candidate_chars = 4
+let g:ycm_enable_diagnostic_highlighting = 0
 
-" Use deoplete-flow.
-function! StrTrim(txt)
-  return substitute(a:txt, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
-endfunction
-
-let g:flow_path = StrTrim(system('PATH=$(npm bin):$PATH && which flow'))
-
-if g:flow_path != 'flow not found'
-  let g:deoplete#sources#flow#flow_bin = g:flow_path
-endif
+" Don't show YCM's preview window ( I find it really annoying )
+set completeopt-=preview
+let g:ycm_add_preview_to_completeopt = 0
