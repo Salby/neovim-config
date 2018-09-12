@@ -70,7 +70,7 @@ let g:airline_theme = 'material'
 let g:javascript_plugin_jsdoc = 1
 
 " Start autocompletion after4 characters.
-let g:ycm_min_num_of_chars_for_completion = 4
+let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_min_num_identifier_candidate_chars = 4
 let g:ycm_enable_diagnostic_highlighting = 0
 
