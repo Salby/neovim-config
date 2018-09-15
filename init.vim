@@ -12,6 +12,9 @@ Plug 'jiangmiao/auto-pairs'
 " YouCompleteMe autocompletion.
 Plug 'Valloric/youCompleteMe', { 'do': './install.py --tern-completer' }
 
+" Deoplete autocompletion.
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
 " Airline bar.
 Plug 'vim-airline/vim-airline'
 
@@ -22,14 +25,15 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
-" Emmet
+" Emmet.
 Plug 'mattn/emmet-vim'
 
 " Vue component syntax highlighting.
 Plug 'posva/vim-vue'
 
-" PHP syntax highlighting
+" PHP Stuff.
 Plug 'StanAngeloff/php.vim'
+Plug 'shawncplus/phpcomplete.vim'
 
 call plug#end()
 
@@ -81,6 +85,9 @@ let g:ycm_add_preview_to_completeopt = 0
 " Open nerdtree if no file has been specified.
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Deoplete plugin settings.
+let g:deoplete#enable_at_startup = 1
 
 " Command to move along tabs Konsole-style.
 map <A-Right> gt
