@@ -3,6 +3,10 @@ call plug#begin('~/.vim/plugged')
 " Material theme.
 Plug 'kaicataldo/material.vim'
 
+" SASS & CSS stuff.
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'shmargum/vim-sass-colors'
+
 " Javascript syntax highlighting.
 Plug 'pangloss/vim-javascript'
 
@@ -92,3 +96,6 @@ let g:deoplete#enable_at_startup = 1
 " Command to move along tabs Konsole-style.
 map <A-Right> gt
 map <A-Left> gT
+
+" Emmet completion.
+map <c-e> <c-y>,
