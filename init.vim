@@ -39,6 +39,9 @@ Plug 'posva/vim-vue'
 Plug 'StanAngeloff/php.vim'
 Plug 'shawncplus/phpcomplete.vim'
 
+" Jinja template support.
+Plug 'lepture/vim-jinja'
+
 call plug#end()
 
 " General stuff.
@@ -53,6 +56,8 @@ autocmd FileType scss setlocal shiftwidth=2 tabstop=2
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType php setlocal shiftwidth=4 tabstop=4
 autocmd FileType vue setlocal shiftwidth=2 tabstop=2
+
+au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft = jinja
 
 " Theme stuff.
 set background=dark
