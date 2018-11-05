@@ -57,7 +57,7 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType php setlocal shiftwidth=4 tabstop=4
 autocmd FileType vue setlocal shiftwidth=2 tabstop=2
 
-au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft = jinja
+au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=jinja
 
 " Theme stuff.
 set background=dark
@@ -104,3 +104,14 @@ map <A-Left> gT
 
 " Emmet completion.
 map <c-e> <c-y>,
+
+" PHPDOC syntax highlighting
+function! PhpSyntaxOverride()
+  hi! link phpDocTags phpDefine
+  hi! link phpDocParam phpType
+endfunction
+
+augroup PhpSyntaxOverride
+  autocmd!
+  autocmd FileType php call PhpSyntaxOverride()
+augroup END
