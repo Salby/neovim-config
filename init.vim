@@ -42,6 +42,9 @@ Plug 'shawncplus/phpcomplete.vim'
 " Jinja template support.
 Plug 'lepture/vim-jinja'
 
+" Dartlang support.
+Plug 'dart-lang/dart-vim-plugin'
+
 call plug#end()
 
 " General stuff.
@@ -79,6 +82,9 @@ colorscheme material
 " Airline-theme
 let g:airline_theme = 'material'
 
+" Powerline-fonts
+let g:airline_powerline_fonts = 1
+
 " Javascript syntax highlighting.
 let g:javascript_plugin_jsdoc = 1
 
@@ -104,6 +110,11 @@ map <A-Left> gT
 
 " Emmet completion.
 map <c-e> <c-y>,
+
+" Dartlang settings.
+let dart_html_in_string=v:true
+let dart_style_guide = 2
+let dart_format_on_save = 1
 
 " PHPDOC syntax highlighting
 function! PhpSyntaxOverride()
