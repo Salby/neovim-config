@@ -13,9 +13,6 @@ Plug 'pangloss/vim-javascript'
 " Auto-pairing braces, parentheses and quotes.
 Plug 'jiangmiao/auto-pairs'
 
-" YouCompleteMe autocompletion.
-Plug 'Valloric/youCompleteMe', { 'do': './install.py --tern-completer' }
-
 " Deoplete autocompletion.
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
@@ -37,7 +34,7 @@ Plug 'posva/vim-vue'
 
 " PHP Stuff.
 Plug 'StanAngeloff/php.vim'
-Plug 'shawncplus/phpcomplete.vim'
+Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
 
 " Jinja template support.
 Plug 'lepture/vim-jinja'
@@ -93,16 +90,16 @@ let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_min_num_identifier_candidate_chars = 4
 let g:ycm_enable_diagnostic_highlighting = 0
 
-" Don't show YCM's preview window ( I find it really annoying )
-set completeopt-=preview
-let g:ycm_add_preview_to_completeopt = 0
-
 " Open nerdtree if no file has been specified.
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Deoplete plugin settings.
 let g:deoplete#enable_at_startup = 1
+
+" PHPCD plugin
+let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
+let g:deoplete#ignore_sources.php = ['omni']
 
 " Command to move along tabs Konsole-style.
 map <A-Right> gt
