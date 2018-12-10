@@ -1,5 +1,8 @@
 call plug#begin('~/.vim/plugged')
 
+" ALE Linting.
+Plug 'w0rp/ale'
+
 " Material theme.
 Plug 'kaicataldo/material.vim'
 
@@ -15,6 +18,15 @@ Plug 'jiangmiao/auto-pairs'
 
 " Deoplete autocompletion.
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+" Tern
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+
+" Tern-deoplete
+Plug 'carlitux/deoplete-ternjs'
+
+" Rust-deoplete
+Plug 'sebastianmarkow/deoplete-rust'
 
 " Airline bar.
 Plug 'vim-airline/vim-airline'
@@ -76,10 +88,13 @@ let g:material_terminal_italics = 1
 
 colorscheme material
 
-" Airline-theme
+" Airline settings.
+let g:airline#extensions#ale#enabled = 1
+
+"" Theme.
 let g:airline_theme = 'material'
 
-" Powerline-fonts
+"" Powerline-fonts
 let g:airline_powerline_fonts = 1
 
 " Javascript syntax highlighting.
@@ -94,8 +109,31 @@ let g:ycm_enable_diagnostic_highlighting = 0
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
+" ALE settings.
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '->'
+let g:ale_sign_warning = '>-'
+
+"" Rust
+let g:ale_linters = {'rust': ['rls']}
+
 " Deoplete plugin settings.
+autocmd FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
 let g:deoplete#enable_at_startup = 1
+
+" Tern-deoplete plugin.
+let g:deoplete#sources#ternjs#filetypes = [
+        \ 'jsx',
+        \ 'javascript.jsx',
+        \ 'vue'
+        \ ]
+" Use tern_for_vim
+let g:tern#command = ["tern"]
+let g:tern#arguments = ["--persistent"]
+
+" Rust-deoplete plugin.
+let g:deoplete#sources#rust#racer_binary = '~/.cargo/bin/racer'
+let g:deoplete#sources#rust#rust_source_path = '~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/'
 
 " PHPCD plugin
 let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
