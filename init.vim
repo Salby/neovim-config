@@ -3,12 +3,11 @@ call plug#begin('~/.vim/plugged')
 " ALE Linting.
 Plug 'w0rp/ale'
 
-" Material theme.
-Plug 'kaicataldo/material.vim'
+" Nord theme.
+Plug 'arcticicestudio/nord-vim'
 
 " SASS & CSS stuff.
 Plug 'cakebaker/scss-syntax.vim'
-Plug 'shmargum/vim-sass-colors'
 
 " Javascript syntax highlighting.
 Plug 'pangloss/vim-javascript'
@@ -18,15 +17,14 @@ Plug 'jiangmiao/auto-pairs'
 
 " Deoplete autocompletion.
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
 " Tern
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
-
 " Tern-deoplete
 Plug 'carlitux/deoplete-ternjs'
-
 " Rust-deoplete
 Plug 'sebastianmarkow/deoplete-rust'
+" Dart-deoplete
+"Plug 'villainy/deoplete-dart', { 'for': 'dart' }
 
 " Airline bar.
 Plug 'vim-airline/vim-airline'
@@ -82,17 +80,18 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-let g:material_theme_style = 'default'
+let g:nord_italic = 1
+let g:nord_underline = 1
+let g:nord_italic_comments = 1
+let g:nord_comment_brightness = 12
 
-let g:material_terminal_italics = 1
-
-colorscheme material
+colorscheme nord
 
 " Airline settings.
 let g:airline#extensions#ale#enabled = 1
 
 "" Theme.
-let g:airline_theme = 'material'
+let g:airline_theme = 'nord'
 
 "" Powerline-fonts
 let g:airline_powerline_fonts = 1
@@ -118,7 +117,6 @@ let g:ale_sign_warning = '>-'
 let g:ale_linters = {'rust': ['rls']}
 
 " Deoplete plugin settings.
-autocmd FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
 let g:deoplete#enable_at_startup = 1
 
 " Tern-deoplete plugin.
@@ -134,6 +132,9 @@ let g:tern#arguments = ["--persistent"]
 " Rust-deoplete plugin.
 let g:deoplete#sources#rust#racer_binary = '~/.cargo/bin/racer'
 let g:deoplete#sources#rust#rust_source_path = '~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/'
+
+" Deoplete-dart plugin.
+"let g:deoplete#sources#dart#dart_sdk_path = '/home/sander/flutter/bin/cache/dart-sdk'
 
 " PHPCD plugin
 let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
