@@ -3,6 +3,9 @@ call plug#begin('~/.vim/plugged')
 " ALE Linting.
 Plug 'w0rp/ale'
 
+" Language client
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+
 " Nord theme.
 Plug 'arcticicestudio/nord-vim'
 
@@ -23,8 +26,6 @@ Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'carlitux/deoplete-ternjs'
 " Rust-deoplete
 Plug 'sebastianmarkow/deoplete-rust'
-" Dart-deoplete
-"Plug 'villainy/deoplete-dart', { 'for': 'dart' }
 
 " Airline bar.
 Plug 'vim-airline/vim-airline'
@@ -99,11 +100,6 @@ let g:airline_powerline_fonts = 1
 " Javascript syntax highlighting.
 let g:javascript_plugin_jsdoc = 1
 
-" Start autocompletion after4 characters.
-let g:ycm_min_num_of_chars_for_completion = 2
-let g:ycm_min_num_identifier_candidate_chars = 4
-let g:ycm_enable_diagnostic_highlighting = 0
-
 " Open nerdtree if no file has been specified.
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -116,8 +112,47 @@ let g:ale_sign_warning = '>-'
 "" Rust
 let g:ale_linters = {'rust': ['rls']}
 
+" Language client plugin settings.
+let g:LanguageClient_serverCommands = {
+        \ 'dart': ['dart_language_server'],
+        \ }
+
+let g:LanguageClient_changeThrottle = 0.5
+let g:LanguageClient_diagnosticsDisplay = {
+        \ 1: {
+        \         "name": "Error",
+        \         "texthl": "ALEError",
+        \         "signText": "->",
+        \         "signTexthl": "ALEErrorSign",
+        \ },
+        \ 2: {
+        \         "name": "Warning",
+        \         "texthl": "ALEWarning",
+        \         "signText": "!!",
+        \         "signTexthl": "ALEWarningSign",
+        \ },
+        \ 3: {
+        \         "name": "Information",
+        \         "texthl": "ALEInfo",
+        \         "signText": "··",
+        \         "signTexthl": "ALEInfoSign",
+        \ },
+        \ 4: {
+        \         "name": "Hint",
+        \         "texthl": "ALEInfo",
+        \         "signText": "~>",
+        \         "signTexthl": "ALeInfoSign",
+        \ },
+\ }
+
+"" Keymaps.
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
 " Deoplete plugin settings.
 let g:deoplete#enable_at_startup = 1
+
+"" Close preview window when leaving INSERT mode.
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Tern-deoplete plugin.
 let g:deoplete#sources#ternjs#filetypes = [
@@ -132,9 +167,6 @@ let g:tern#arguments = ["--persistent"]
 " Rust-deoplete plugin.
 let g:deoplete#sources#rust#racer_binary = '~/.cargo/bin/racer'
 let g:deoplete#sources#rust#rust_source_path = '~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/'
-
-" Deoplete-dart plugin.
-"let g:deoplete#sources#dart#dart_sdk_path = '/home/sander/flutter/bin/cache/dart-sdk'
 
 " PHPCD plugin
 let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
